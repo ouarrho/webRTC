@@ -1,3 +1,4 @@
+const fs = require('fs')
 
 const http = require('http').createServer((req, res) => {
   // Set CORS headers to allow requests from any origin
@@ -5,8 +6,20 @@ const http = require('http').createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  res.statusCode = 200;
-  res.end('Hello, world!');
+  fs.readFile('index.html', (err, data) => {
+    if (err) {
+      // Handle error if the file can't be read
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('Internal Server Error');
+    } else {
+      // Set the Content-Type header to 'text/html' for HTML responses
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html');
+      // Send the HTML content as the response
+      res.end(data);
+    }
+  });
 });
 
 const io = require('socket.io')(http, {
