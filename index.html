@@ -16,7 +16,7 @@
 html,
 body {
   width: 100% !important;
-  height: 100% !important;
+  height: 100%;
   margin: 0 !important;
   padding: 0 !important;
   background-color: #f6f8fa !important;
@@ -51,27 +51,21 @@ body {
     </style>
     <script type="text/javascript">
     	document.addEventListener("DOMContentLoaded", function() {
-				const $div = document.querySelector('#div');
+				const $body = document.querySelector('body');
 				const $inp = document.querySelector('input');
 				$inp.addEventListener("focus", function() {
-$div.style.height = '58%'
+$body.style.height = '58%'
 });
 
 // Event listener for when the input element loses focus
 $inp.addEventListener("blur", function() {
-$div.style.height = '100%'
-});
-window.addEventListener('resize', function() {
-  // Check for changes in window height and infer the virtual keyboard height
-  const currentHeight = window.innerHeight;
-  alert(currentHeight)
-  // Compare the currentHeight with previousHeight to estimate keyboard height
+$body.style.height = '100%'
 });
 			});
     </script>
 </head>
 <body>
-    <div style="display:flex;justify-content: space-between;flex-direction: column;position: relative;width: 100%;height: 58%;" id="div">
+    <div style="display:flex;justify-content: space-between;flex-direction: column;position: relative;width: 100%;height: 100%;" id="div">
         
     <div style="padding:4px;width: 100%;height: 48px;
     border-bottom: 1px solid #ddd;
